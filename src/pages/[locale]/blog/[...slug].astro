@@ -7,20 +7,27 @@ import { useTranslations, type Locale, locales } from '@/i18n/translations';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   
-  // Generate paths for all locales and all posts
+  // Generate paths for all locales and their posts
   const paths = [];
   
   for (const locale of locales) {
     for (const post of posts) {
-      // Filter posts by language if they have a lang field
-      if (post.data.lang && post.data.lang !== locale) {
-        continue; // Skip posts not in this locale
+      // Posts are organized in locale folders: en/post-name, es/post-name, pt-br/post-name
+      // The post.id includes the folder prefix, e.g. "en/post-1-ad"
+      const postLocale = post.id.split('/')[0];
+      
+      // Only include posts that belong to this locale
+      if (postLocale !== locale) {
+        continue;
       }
+      
+      // The slug is the post id without the locale prefix
+      const slug = post.id.split('/').slice(1).join('/');
       
       paths.push({
         params: { 
           locale: locale,
-          slug: post.id 
+          slug: slug 
         },
         props: { post, locale },
       });

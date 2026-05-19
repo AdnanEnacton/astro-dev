@@ -7,11 +7,11 @@ import { useTranslations } from '@/i18n/translations';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   
-  // Only include English posts or posts without lang field
-  const englishPosts = posts.filter(post => !post.data.lang || post.data.lang === 'en');
+  // Only include English posts (from en/ folder)
+  const englishPosts = posts.filter(post => post.id.startsWith('en/'));
   
   return englishPosts.map((post) => ({
-    params: { slug: post.id },
+    params: { slug: post.id.replace('en/', '') },
     props: { post },
   }));
 }

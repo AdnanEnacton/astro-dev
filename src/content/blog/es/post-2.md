@@ -5,7 +5,6 @@ pubDate: "Jun 19 2024"
 image: "https://images.unsplash.com/photo-1741091742846-99cca6f6437b?q=80&w=1286&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 authorImage: "/avatar/avatar1.png"
 authorName: "John Doe"
-lang: "es"
 ---
 
 Cultivar plantas en la ciudad puede parecer un desafío, pero es uno de los pasatiempos más gratificantes que he descubierto. Hace tres meses, transformé el pequeño balcón de mi apartamento en un próspero espacio verde, y el viaje ha sido nada menos que mágico.

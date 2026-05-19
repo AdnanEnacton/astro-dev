@@ -15,9 +15,9 @@ const allPosts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-// Filter posts by current language (show posts in current language + posts without lang field)
+// Filter posts by locale folder (post.id starts with locale prefix, e.g. "en/post-name")
 const posts = allPosts.filter(post => 
-	!post.data.lang || post.data.lang === currentLocale
+	post.id.startsWith(`${currentLocale}/`)
 );
 ---
 

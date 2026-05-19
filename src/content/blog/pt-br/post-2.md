@@ -5,7 +5,6 @@ pubDate: "Jun 19 2024"
 image: "https://images.unsplash.com/photo-1741091742846-99cca6f6437b?q=80&w=1286&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 authorImage: "/avatar/avatar1.png"
 authorName: "John Doe"
-lang: "pt-br"
 ---
 
 Cultivar plantas na cidade pode parecer desafiador, mas é um dos hobbies mais gratificantes que descobri. Três meses atrás, transformei a pequena varanda do meu apartamento em um espaço verde próspero, e a jornada tem sido nada menos que mágica.

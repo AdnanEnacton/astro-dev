@@ -5,7 +5,6 @@ pubDate: "Jul 08 2022"
 image: "https://images.unsplash.com/photo-1741610748460-fb2e33cc6390?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D"
 authorImage: "/avatar/avatar1.png"
 authorName: "John Doe"
-lang: "en"
 ---
 
 # Building Websites with Astro
