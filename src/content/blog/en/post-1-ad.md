@@ -1,17 +1,20 @@
 ---
 title: "Building Websites with Astro"
-description: "Discover how Astro is revolutionizing web development with its unique approach to building fast, content-focused websites. Learn about its key features, performance benefits, and why developers are making the switch."
-pubDate: "Jul 08 2022"
-image: "https://images.unsplash.com/photo-1741610748460-fb2e33cc6390?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D"
+description: "Discover how Astro is revolutionizing web development with its
+  unique approach to building fast, content-focused websites. Learn about its
+  key features, performance benefits, and why developers are making the switch."
+pubDate: "Jul 08 2026"
+image: "https://images.unsplash.com/photo-1741610748460-fb2e33cc6390?w=400&auto\
+  =format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx\
+  8fGVufDB8fHx8fA%3D%3D"
 authorImage: "/avatar/avatar1.png"
 authorName: "John Doe"
 ---
-
-# Building Websites with Astro
+# Building Websites with Astro 123
 
 Astro has emerged as one of the most exciting web frameworks in recent years, offering developers a fresh approach to building modern websites. As a "content-focused" framework, Astro prioritizes delivering lightning-fast performance while maintaining developer experience. Let's explore what makes Astro special and why you might want to consider it for your next project.
 
-## What is Astro?
+## What is Astro mad with ad?
 
 Astro is an all-in-one web framework designed to deliver lightning-fast performance with a modern developer experience. Unlike traditional frameworks that send large JavaScript bundles to the client, Astro generates static HTML by default and only ships JavaScript when absolutely necessary - a concept they call "Islands Architecture."
 
@@ -62,7 +65,7 @@ A basic Astro component looks like this:
 const greeting = "Hello, Astro!";
 ---
 
-<!-- Component Template -->
+{/* Component Template */}
 <h1>{greeting}</h1>
 <p>Welcome to my Astro website!</p>
 ```
