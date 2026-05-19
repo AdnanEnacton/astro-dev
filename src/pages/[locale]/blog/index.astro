@@ -4,10 +4,20 @@ import { getCollection } from 'astro:content';
 import { Background } from '@/components/background';
 import { BlogPosts } from '@/components/blocks/blog-posts';
 import { SITE_TITLE } from '@/consts';
-import { useTranslations } from '@/i18n/translations';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { useTranslations, type Locale, locales } from '@/i18n/translations';
 
-const currentLocale = 'en';
+// Get the locale from the URL parameter
+export async function getStaticPaths() {
+  return locales.map((locale) => ({
+    params: { locale },
+  }));
+}
+
+const { locale } = Astro.params;
+const currentLocale = locale as Locale;
+
+// Get translations
 const t = useTranslations(currentLocale);
 
 // Get all blog posts
@@ -35,9 +45,6 @@ const posts = allPosts.filter(post =>
 				}}
 				client:only='react' 
 			/>
-		</div>
-	</Background>
-</DefaultLayout>
 		</div>
 	</Background>
 </DefaultLayout>

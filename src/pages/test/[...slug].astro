@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { TestPost } from '@/components/blocks/test-post';
+import { useTranslations } from '@/i18n/translations';
+
+export async function getStaticPaths() {
+  const tests = await getCollection('test');
+  
+  return tests.map((test) => ({
+    params: { slug: test.id },
+    props: { test },
+  }));
+}
+
+const { test } = Astro.props;
+const currentLocale = 'en';
+const t = useTranslations(currentLocale);
+
+const { Content } = await render(test);
+---
+
+<DefaultLayout title={test.data.title} description={test.data.description}>
+  		<div class="py-28 lg:pt-44 lg:pb-32">
+  <TestPost test={test} locale={currentLocale} client:only='react'>
+    <Content />
+  </TestPost>
+  </div>
+</DefaultLayout>

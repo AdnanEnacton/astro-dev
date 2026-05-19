@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+
+import { Background } from '@/components/background';
+import { SITE_TITLE } from '@/consts';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { TestPosts } from '@/components/blocks/test-posts';
+import { useTranslations, type Locale, locales } from '@/i18n/translations';
+
+// Get the locale from the URL parameter
+export async function getStaticPaths() {
+  return locales.map((locale) => ({
+    params: { locale },
+  }));
+}
+
+const { locale } = Astro.params;
+const currentLocale = locale as Locale;
+
+// Get translations
+const t = useTranslations(currentLocale);
+
+const tests = (await getCollection('test')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// Extract unique categories
+const categories = [...new Set(tests.map(test => test.data.category))].sort();
+---
+
+<DefaultLayout title={`${t('test.title')} - ${SITE_TITLE}`} description={t('test.description')} >
+ <Background>
+  <div class="py-28 lg:pt-44 lg:pb-32">
+   <TestPosts 
+     tests={tests} 
+     categories={categories} 
+     locale={currentLocale}
+     translations={{
+       title: t('test.title'),
+       description: t('test.description'),
+       allButton: t('test.allButton'),
+       minRead: t('test.minRead')
+     }}
+     client:only='react'
+   />
+  </div>
+ </Background>
+</DefaultLayout>

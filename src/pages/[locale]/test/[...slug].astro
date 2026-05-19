@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from 'astro:content';
+import DefaultLayout from '../../../../layouts/DefaultLayout.astro';
+import { TestPost } from '@/components/blocks/test-post';
+import { useTranslations, type Locale, locales } from '@/i18n/translations';
+
+export async function getStaticPaths() {
+  const tests = await getCollection('test');
+  
+  // Generate paths for all locales and all tests
+  const paths = [];
+  
+  for (const locale of locales) {
+    for (const test of tests) {
+      paths.push({
+        params: { 
+          locale: locale,
+          slug: test.id 
+        },
+        props: { test, locale },
+      });
+    }
+  }
+  
+  return paths;
+}
+
+const { test, locale } = Astro.props;
+const currentLocale = locale as Locale;
+const t = useTranslations(currentLocale);
+
+const { Content } = await render(test);
+---
+
+<DefaultLayout title={test.data.title} description={test.data.description}>
+  <TestPost test={test} locale={currentLocale} client:only='react'>
+    <Content />
+  </TestPost>
+</DefaultLayout>

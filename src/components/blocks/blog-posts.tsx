@@ -2,18 +2,45 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
-const BlogPosts = ({ posts }: { posts: any[] }) => {
+interface BlogPostsProps {
+  posts: any[];
+  locale?: string;
+  translations?: {
+    title: string;
+    description: string;
+    minRead: string;
+    readMore: string;
+  };
+}
+
+const BlogPosts = ({
+  posts,
+  locale = "en",
+  translations = {
+    title: "Blog",
+    description: "Explore our blog for insightful articles, personal reflections and more.",
+    minRead: "Min Read",
+    readMore: "Read More"
+  }
+}: BlogPostsProps) => {
+  // Build URL with language parameter
+  const getBlogUrl = (postId: string) => {
+    if (locale === "en") {
+      return `/blog/${postId}/`;
+    }
+    return `/${locale}/blog/${postId}/`;
+  };
+
   return (
     <>
       <section>
         <div className="container max-w-5xl space-y-4 text-center">
           <h1 className="text-2xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-            Blog
+            {translations.title}
           </h1>
 
           <p className="text-muted-foreground max-w-md leading-snug font-medium lg:mx-auto">
-            Explore our blog for insightful articles, personal reflections and
-            more.
+            {translations.description}
           </p>
         </div>
       </section>
@@ -24,7 +51,7 @@ const BlogPosts = ({ posts }: { posts: any[] }) => {
               <a
                 key={post.id}
                 className="rounded-xl border"
-                href={`/blog/${post.id}/`}
+                href={getBlogUrl(post.id)}
               >
                 <div className="p-2">
                   <img
@@ -53,7 +80,7 @@ const BlogPosts = ({ posts }: { posts: any[] }) => {
                       </span>
                     </div>
                     <Badge variant="secondary" className="h-fit">
-                      10 Min Read
+                      10 {translations.minRead}
                     </Badge>
                   </div>
                 </div>

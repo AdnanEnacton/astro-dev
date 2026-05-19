@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from 'astro:content';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { BlogPost } from '@/components/blocks/blog-post';
+import { useTranslations, type Locale, locales } from '@/i18n/translations';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  
+  // Generate paths for all locales and all posts
+  const paths = [];
+  
+  for (const locale of locales) {
+    for (const post of posts) {
+      // Filter posts by language if they have a lang field
+      if (post.data.lang && post.data.lang !== locale) {
+        continue; // Skip posts not in this locale
+      }
+      
+      paths.push({
+        params: { 
+          locale: locale,
+          slug: post.id 
+        },
+        props: { post, locale },
+      });
+    }
+  }
+  
+  return paths;
+}
+
+const { post, locale } = Astro.props;
+const currentLocale = locale as Locale;
+const t = useTranslations(currentLocale);
+
+const { Content } = await render(post);
+---
+
+<DefaultLayout title={post.data.title} description={post.data.description}>
+  <BlogPost post={post} locale={currentLocale} client:only='react'>
+    <Content />
+  </BlogPost>
+</DefaultLayout>
